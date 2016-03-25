@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{982C938F-1626-4AA6-A3D0-0C11F7D7C42C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFarm", "src\EasyFarm\EasyFarm.csproj", "{DFA60320-AAD3-4932-88FB-FAAD7E533608}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4F8CB7E1-9870-43F9-B3DA-4F386BF91264}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFarm", "EasyFarm\EasyFarm.csproj", "{DFA60320-AAD3-4932-88FB-FAAD7E533608}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFarm.Tests", "EasyFarm.Tests\EasyFarm.Tests.csproj", "{00D3670F-1B7E-4C25-903F-D0A2EE3F27C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFarm.Tests", "test\EasyFarm.Tests\EasyFarm.Tests.csproj", "{00D3670F-1B7E-4C25-903F-D0A2EE3F27C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,9 +24,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{DFA60320-AAD3-4932-88FB-FAAD7E533608} = {982C938F-1626-4AA6-A3D0-0C11F7D7C42C}
-		{00D3670F-1B7E-4C25-903F-D0A2EE3F27C5} = {4F8CB7E1-9870-43F9-B3DA-4F386BF91264}
 	EndGlobalSection
 EndGlobal
