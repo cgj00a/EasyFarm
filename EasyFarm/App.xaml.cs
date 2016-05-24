@@ -52,7 +52,7 @@ namespace EasyFarm
             Log.Initialize();
 
             Log.Write("Resources loaded");
-            AbilityService = new AbilityService("resources");
+            AbilityService = new AbilityService(new ResourceLoader("resources"));
 
             Log.Write("Application starting");
             var bootStrapper = new Bootstrapper();

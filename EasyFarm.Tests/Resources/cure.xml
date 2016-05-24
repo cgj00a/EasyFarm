@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<spells>
+  <s id="1" index="1" prefix="/magic" english="Cure" japanese="ケアル" type="WhiteMagic" element="Light" targets="Self, Player, Party, Ally, NPC, Enemy" skill="HealingMagic" mpcost="8" casttime="2" recast="5" duration="0" alias="c1|c" />
+</spells>

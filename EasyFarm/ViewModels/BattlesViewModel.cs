@@ -48,7 +48,7 @@ namespace EasyFarm.ViewModels
         /// <summary>
         ///     The currently selected ability.
         /// </summary>
-        public BattleAbility SelectedAbility { get; set; }
+        public AbilityViewModel SelectedAbilityViewModel { get; set; }
 
         /// <summary>
         ///     The currently selected list.
@@ -73,12 +73,12 @@ namespace EasyFarm.ViewModels
         /// <summary>
         ///     Finds the list containing the given battle ability.
         /// </summary>
-        /// <param name="ability"></param>
+        /// <param name="abilityViewModel"></param>
         /// <returns></returns>
-        private BattleList FindListContainingAbility(BattleAbility ability)
+        private BattleList FindListContainingAbility(AbilityViewModel abilityViewModel)
         {
             return Config.Instance.BattleLists
-                .FirstOrDefault(x => x.Actions.Contains(ability));
+                .FirstOrDefault(x => x.Actions.Contains(abilityViewModel));
         }
 
         /// <summary>
@@ -88,16 +88,16 @@ namespace EasyFarm.ViewModels
         {
             // Check to see if an ability is selected. If so, find the list with which to add the 
             // new ability under. 
-            if (SelectedAbility != null)
+            if (SelectedAbilityViewModel != null)
             {
-                SelectedList = FindListContainingAbility(SelectedAbility);
+                SelectedList = FindListContainingAbility(SelectedAbilityViewModel);
             }
 
             // Now, if the user has either selected an ability or a list, 
             // add the new ability. 
             if (SelectedList != null)
             {
-                var action = new BattleAbility();
+                var action = new AbilityViewModel();
                 SelectedList.Actions.Add(action);
             }
         }
@@ -108,19 +108,19 @@ namespace EasyFarm.ViewModels
         private void DeleteAction()
         {
             // Check if the user has selected an ability, do nothing if not. 
-            if (SelectedAbility != null)
+            if (SelectedAbilityViewModel != null)
             {
                 // Get the list with the selected ability in it. 
                 if (SelectedList == null)
                 {
-                    SelectedList = FindListContainingAbility(SelectedAbility);
+                    SelectedList = FindListContainingAbility(SelectedAbilityViewModel);
                 }
 
                 // Remove the selected item from the list. 
                 if (SelectedList != null)
                 {
                     // Removed the selected ability. 
-                    SelectedList.Actions.Remove(SelectedAbility);
+                    SelectedList.Actions.Remove(SelectedAbilityViewModel);
 
                     // Ensure there is atleast one ability. 
                     KeepOne();
@@ -137,9 +137,9 @@ namespace EasyFarm.ViewModels
             if (SelectedList == null)
             {
                 // If they've selected an ability, use the list containing that ability. 
-                if (SelectedAbility != null)
+                if (SelectedAbilityViewModel != null)
                 {
-                    SelectedList = FindListContainingAbility(SelectedAbility);
+                    SelectedList = FindListContainingAbility(SelectedAbilityViewModel);
                 }
             }
 
@@ -164,7 +164,7 @@ namespace EasyFarm.ViewModels
             // Ensure there is atleast one ability. 
             if (!SelectedList.Actions.Any())
             {
-                var action = new BattleAbility();
+                var action = new AbilityViewModel();
                 SelectedList.Actions.Add(action);
             }
         }

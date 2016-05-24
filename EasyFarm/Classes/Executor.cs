@@ -48,7 +48,7 @@ namespace EasyFarm.Classes
             if (action == null) throw new ArgumentNullException(nameof(action));
 
             // Create new new ability and set its basic required information.
-            var baction = new BattleAbility
+            var baction = new AbilityViewModel
             {
                 Name = action.English,
                 IsEnabled = true,
@@ -56,14 +56,14 @@ namespace EasyFarm.Classes
             };
 
             // Convert ability to new battle ability object.
-            UseBuffingActions(new List<BattleAbility> { baction });
+            UseBuffingActions(new List<AbilityViewModel> { baction });
         }
 
         /// <summary>
         /// Executes moves without the need for a target.
         /// </summary>
         /// <param name="actions"></param>
-        public void UseBuffingActions(IEnumerable<BattleAbility> actions)
+        public void UseBuffingActions(IEnumerable<AbilityViewModel> actions)
         {
             if (actions == null) throw new ArgumentNullException(nameof(actions));
 
@@ -101,11 +101,11 @@ namespace EasyFarm.Classes
         /// </summary>
         /// <param name="action"></param>
         /// <param name="target"></param>
-        public void UseTargetedAction(BattleAbility action, Unit target)
+        public void UseTargetedAction(AbilityViewModel action, Unit target)
         {
             if (target == null) throw new ArgumentNullException(nameof(target));
             if (action == null) throw new ArgumentNullException(nameof(action));
-            UseTargetedActions(new List<BattleAbility> { action }, target);
+            UseTargetedActions(new List<AbilityViewModel> { action }, target);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace EasyFarm.Classes
         /// </summary>
         /// <param name="actions"></param>
         /// <param name="target"></param>
-        public void UseTargetedActions(IEnumerable<BattleAbility> actions, Unit target)
+        public void UseTargetedActions(IEnumerable<AbilityViewModel> actions, Unit target)
         {
             // Logic error to call this without setting a target first.
             if (actions == null) throw new ArgumentNullException(nameof(actions));
@@ -155,7 +155,7 @@ namespace EasyFarm.Classes
         /// </summary>
         /// <param name="target"></param>
         /// <param name="action"></param>
-        private void MoveIntoActionRange(Unit target, BattleAbility action)
+        private void MoveIntoActionRange(Unit target, AbilityViewModel action)
         {
             // Move to target if out of distance.
             if (target.Distance > action.Distance)

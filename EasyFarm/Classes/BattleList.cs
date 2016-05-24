@@ -24,7 +24,7 @@ namespace EasyFarm.Classes
     public class BattleList : BindableBase
     {
         private string _name;
-        private ObservableCollection<BattleAbility> _value;
+        private ObservableCollection<AbilityViewModel> _value;
 
         public BattleList()
         {
@@ -33,7 +33,7 @@ namespace EasyFarm.Classes
         public BattleList(string name)
         {
             _name = name;
-            _value = new ObservableCollection<BattleAbility> {new BattleAbility()};
+            _value = new ObservableCollection<AbilityViewModel> {new AbilityViewModel()};
         }
 
         public string Name
@@ -42,7 +42,7 @@ namespace EasyFarm.Classes
             set { SetProperty(ref _name, value); }
         }
 
-        public ObservableCollection<BattleAbility> Actions
+        public ObservableCollection<AbilityViewModel> Actions
         {
             get { return _value; }
             set { SetProperty(ref _value, value); }

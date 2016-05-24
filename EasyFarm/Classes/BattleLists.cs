@@ -28,7 +28,7 @@ namespace EasyFarm.Classes
     /// </summary>
     public class BattleLists : ObservableCollection<BattleList>
     {
-        public IEnumerable<BattleAbility> Actions
+        public IEnumerable<AbilityViewModel> Actions
         {
             get { return this.SelectMany(x => x.Actions); }
         }

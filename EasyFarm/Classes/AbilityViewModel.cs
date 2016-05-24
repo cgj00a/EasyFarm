@@ -33,7 +33,7 @@ namespace EasyFarm.Classes
     ///     targeted and buffing abilities allowing the player to choose
     ///     to cast abilities when a buff has worn.
     /// </summary>
-    public class BattleAbility : BindableBase
+    public class AbilityViewModel : BindableBase
     {
         /// <summary>
         ///     Maps ability type objects to their commands.
@@ -115,7 +115,7 @@ namespace EasyFarm.Classes
         /// </summary>
         private int _usages;
 
-        static BattleAbility()
+        static AbilityViewModel()
         {
             var commandTypes = new ObservableCollection<AbilityType>
             {
@@ -138,7 +138,8 @@ namespace EasyFarm.Classes
             {
                 TargetType.Unknown,
                 TargetType.Self,
-                TargetType.Enemy
+                TargetType.Enemy, 
+                TargetType.Party
             };
 
             // Load valid targets.
@@ -160,7 +161,7 @@ namespace EasyFarm.Classes
         ///     Create our command binds and initialize our user's
         ///     move usage conditions.
         /// </summary>
-        public BattleAbility() : this(new Ability())
+        public AbilityViewModel() : this(new Ability())
         {
             AutoFillCommand = new DelegateCommand(AutoFill);
         }
@@ -169,7 +170,7 @@ namespace EasyFarm.Classes
         ///     Create a storing a reference to the given ability.
         /// </summary>
         /// <param name="ability"></param>
-        public BattleAbility(Ability ability)
+        public AbilityViewModel(Ability ability)
         {
             Ability = ability;
             Name = ability.English;
@@ -312,6 +313,7 @@ namespace EasyFarm.Classes
             get { return _triggerOnEffectPresent; }
             set { SetProperty(ref _triggerOnEffectPresent, value); }
         }
+
         /// <summary>
         ///     The maximum limit of times this move can be used in battle.
         /// </summary>
@@ -320,6 +322,7 @@ namespace EasyFarm.Classes
             get { return _usageLimit; }
             set { SetProperty(ref _usageLimit, value); }
         }
+
         /// <summary>
         ///     The number of times this move has been used.
         /// </summary>
@@ -328,6 +331,7 @@ namespace EasyFarm.Classes
             get { return _usages; }
             set { SetProperty(ref _usages, value); }
         }
+
         /// <summary>
         ///     Sets the ability field.
         /// </summary>

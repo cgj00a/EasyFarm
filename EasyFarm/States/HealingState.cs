@@ -18,6 +18,7 @@ You should have received a copy of the GNU General Public License
 
 using System.Linq;
 using EasyFarm.Classes;
+using EliteMMO.API;
 using MemoryAPI;
 
 namespace EasyFarm.States
@@ -25,21 +26,17 @@ namespace EasyFarm.States
     public class HealingState : BaseState
     {
         private readonly Executor _executor;
+        private readonly UnitService _unitService;
 
         public HealingState(IMemoryAPI fface) : base(fface)
         {
             _executor = new Executor(fface);
+            _unitService = new UnitService(fface);
         }
 
         public override bool CheckComponent()
         {
-            if (new RestState(fface).CheckComponent()) return false;
-
-            if (!Config.Instance.BattleLists["Healing"].Actions
-                .Any(x => ActionFilters.BuffingFilter(fface, x)))
-                return false;
-
-            return true;
+            return !new RestState(fface).CheckComponent();
         }
 
         public override void EnterComponent()
@@ -55,25 +52,22 @@ namespace EasyFarm.States
         }
 
         public override void RunComponent()
-        {
-            // Get the list of healing abilities that can be used.
-            var usableHealingMoves = Config.Instance.BattleLists["Healing"].Actions
-                .Where(x => ActionFilters.BuffingFilter(fface, x))
-                .ToList();
-
-            // Check if we have any moves to use. 
-            if (usableHealingMoves.Count > 0)
+        {           
+            foreach (var availableMove in Config.Instance.BattleLists["Healing"].Actions)
             {
-                // Check for actions available
-                var action = usableHealingMoves.FirstOrDefault();
-                if (action == null)
+                foreach (var partyMember in fface.PartyMember.Values)
                 {
-                    return;
-                }
+                    if (fface.Navigator.DistanceTo(partyMember.Position) <= availableMove.Distance)
+                    {
+                        var target = _unitService.PlayerArray.FirstOrDefault(x => x.Id == partyMember.ServerID);
+                        if (target == null) return;
 
-                // Create an ability from the name and launch the move. 
-                var healingMove = App.AbilityService.CreateAbility(action.Name);
-                _executor.UseBuffingAction(healingMove);
+                        if (ActionFilters.TargetedFilter(fface, availableMove, target))
+                        {                            
+                            _executor.UseTargetedAction(availableMove, target);
+                        }
+                    }
+                }
             }
         }
     }

@@ -122,21 +122,21 @@ namespace EasyFarm.Classes
         /// <summary>
         ///     Casts an ability with no monitoring.
         /// </summary>
-        /// <param name="ability"></param>
+        /// <param name="abilityViewModel"></param>
         /// <returns></returns>
-        public bool CastAbility(BattleAbility ability)
+        public bool CastAbility(AbilityViewModel abilityViewModel)
         {
-            return CastAbility(ability.Ability);
+            return CastAbility(abilityViewModel.Ability);
         }
 
         /// <summary>
         ///     Casts a spell with monitoring.
         /// </summary>
-        /// <param name="ability"></param>
+        /// <param name="abilityViewModel"></param>
         /// <returns></returns>
-        public bool CastSpell(BattleAbility ability)
+        public bool CastSpell(AbilityViewModel abilityViewModel)
         {
-            return CastSpell(ability.Ability);
+            return CastSpell(abilityViewModel.Ability);
         }
     }
 }

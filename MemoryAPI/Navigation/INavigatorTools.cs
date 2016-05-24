@@ -8,8 +8,8 @@ namespace MemoryAPI
                 
         double DistanceTo(IPosition position);
         bool FaceHeading(IPosition position);        
-        void Goto(IPosition position, bool KeepRunning);
-        void GotoNPC(int ID);
+        void Goto(IPosition position, bool keepRunning);
+        void GotoNPC(int id);
         void Reset();        
     }
 }

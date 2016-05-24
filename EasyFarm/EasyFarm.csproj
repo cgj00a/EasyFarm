@@ -175,6 +175,8 @@
     <Compile Include="Infrastructure\Regions.cs" />
     <Compile Include="Infrastructure\ViewNavigator.cs" />
     <Compile Include="Logging\Log.cs" />
+    <Compile Include="Parsing\IResourceLoader.cs" />
+    <Compile Include="Parsing\ResourceLoader.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -214,7 +216,7 @@
     <Compile Include="ViewModels\ProcessSelectionViewModel.cs" />
     <Compile Include="States\ApproachState.cs" />
     <Compile Include="States\CombatBaseState.cs" />
-    <Compile Include="Classes\BattleAbility.cs" />
+    <Compile Include="Classes\AbilityViewModel.cs" />
     <Compile Include="Classes\Caster.cs" />
     <Compile Include="Classes\Executor.cs" />
     <Compile Include="Classes\Extensions.cs" />
