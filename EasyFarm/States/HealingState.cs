@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License
 
 using System.Linq;
 using EasyFarm.Classes;
+using EasyFarm.ViewModels;
 using MemoryAPI;
 
 namespace EasyFarm.States
@@ -71,7 +72,7 @@ namespace EasyFarm.States
                 }
 
                 // Create an ability from the name and launch the move. 
-                var healingMove = App.ResourceParser.Create(action.Name);
+                var healingMove = MasterViewModel.ResourceParser.Create(action.Name);
                 _executor.UseBuffingAction(healingMove);
             }
         }

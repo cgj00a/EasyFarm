@@ -270,7 +270,7 @@ namespace EasyFarm.ViewModels
         /// </summary>
         private void Exit()
         {
-            Application.Current.Shutdown();
+            _window.Close();
         }
 
 

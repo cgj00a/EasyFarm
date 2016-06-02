@@ -24,6 +24,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Serialization;
 using EasyFarm.Parsing;
+using EasyFarm.ViewModels;
 
 namespace EasyFarm.Classes
 {
@@ -155,23 +156,9 @@ namespace EasyFarm.Classes
             CommandMapper.Add(AbilityType.Item, "/item");
         }
 
-        /// <summary>
-        ///     Create our command binds and initialize our user's
-        ///     move usage conditions.
-        /// </summary>
-        public BattleAbility() : this(new Resource())
+        public BattleAbility()
         {
             AutoFillCommand = new DelegateCommand(AutoFill);
-        }
-
-        /// <summary>
-        ///     Create a storing a reference to the given ability.
-        /// </summary>
-        /// <param name="resource"></param>
-        public BattleAbility(Resource resource)
-        {
-            Resource = resource;
-            Name = resource.English;
         }
 
         /// <summary>
@@ -369,7 +356,7 @@ namespace EasyFarm.Classes
         public Resource FindAbility(string name)
         {
             // Retriever all moves with the specified name.
-            var moves = App.ResourceParser.GetResourcesByName(name).ToArray();
+            var moves = MasterViewModel.ResourceParser.GetResourcesByName(name).ToArray();
 
             // Prompt user to select a move if more
             // than one are found with the same name.

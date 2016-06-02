@@ -15,16 +15,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 ///////////////////////////////////////////////////////////////////*/
 
-using System.Collections;
 using System.Windows;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
 using EasyFarm.Infrastructure;
 using EasyFarm.Logging;
 using EasyFarm.Properties;
-using EasyFarm.Parsing;
-using EasyFarm.ViewModels;
-using EasyFarm.Views;
 
 namespace EasyFarm
 {
@@ -33,13 +27,6 @@ namespace EasyFarm
     /// </summary>
     public partial class App
     {
-        /// <summary>
-        ///     XML parser for looking up ability, spell and weaponskill data.
-        /// </summary>
-        public static IResourceParser ResourceParser;
-
-        private readonly WindsorContainer _container = new WindsorContainer();
-
         public App()
         {
             Current.DispatcherUnhandledException += (sender, e) =>

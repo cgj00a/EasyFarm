@@ -27,5 +27,7 @@ namespace EasyFarm.ViewModels
         void Show();
 
         bool? ShowDialog();
+
+
     }
 }

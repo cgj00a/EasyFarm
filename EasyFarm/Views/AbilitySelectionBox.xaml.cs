@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License
 
 using System.Windows;
 using EasyFarm.Parsing;
+using EasyFarm.ViewModels;
 
 namespace EasyFarm.Views
 {
@@ -29,7 +30,7 @@ namespace EasyFarm.Views
         {
             InitializeComponent();
             CompleteSelectionButton.Click += CompleteSelectionButton_Click;
-            AbilityListBox.ItemsSource = App.ResourceParser.GetResourcesByName(name);
+            AbilityListBox.ItemsSource = MasterViewModel.ResourceParser.GetResourcesByName(name);
             ShowDialog();
         }
 
