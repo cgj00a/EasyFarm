@@ -1,6 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,22 +13,18 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading;
 using EasyFarm.Infrastructure;
 using EasyFarm.Logging;
-using NLog;
 
 namespace EasyFarm.ViewModels
 {
-    [ViewModel("Log")]
     public class LogViewModel : ViewModelBase
     {
+        public string ViewName => "Log";
+
         public ObservableCollection<string> LoggedItems
         {
             get { return Log.LoggedItems; }

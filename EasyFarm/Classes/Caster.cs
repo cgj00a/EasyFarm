@@ -1,5 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-Copyright (C) <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -12,11 +13,9 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -42,14 +41,14 @@ namespace EasyFarm.Classes
         ///     Cast the spell and returns whether the cast was
         ///     successful or not.
         /// </summary>
-        /// <param name="ability"></param>
+        /// <param name="resource"></param>
         /// <returns></returns>
-        public bool CastSpell(Ability ability)
+        public bool CastSpell(Resource resource)
         {
             // Try to cast the spell and return false if
             // we've failed to start casting or the 
             // casting was interrupted. 
-            if (EnsureCast(ability.Command)) return MonitorCast();
+            if (EnsureCast(resource.Command)) return MonitorCast();
             return false;
         }
 
@@ -111,10 +110,10 @@ namespace EasyFarm.Classes
             return Math.Abs(prior - 100) < .5;
         }
 
-        public bool CastAbility(Ability ability)
+        public bool CastAbility(Resource resource)
         {
             // Send the command to the game. 
-            _fface.Windower.SendString(ability.Command);
+            _fface.Windower.SendString(resource.Command);
             Thread.Sleep(100);
             return true;
         }
@@ -126,7 +125,7 @@ namespace EasyFarm.Classes
         /// <returns></returns>
         public bool CastAbility(BattleAbility ability)
         {
-            return CastAbility(ability.Ability);
+            return CastAbility(ability.Resource);
         }
 
         /// <summary>
@@ -136,7 +135,7 @@ namespace EasyFarm.Classes
         /// <returns></returns>
         public bool CastSpell(BattleAbility ability)
         {
-            return CastSpell(ability.Ability);
+            return CastSpell(ability.Resource);
         }
     }
 }

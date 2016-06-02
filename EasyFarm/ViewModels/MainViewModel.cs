@@ -1,6 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,11 +13,9 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using System.Collections.ObjectModel;
-using System.Linq;
 using EasyFarm.Infrastructure;
 
 namespace EasyFarm.ViewModels
@@ -32,23 +30,27 @@ namespace EasyFarm.ViewModels
         /// <summary>
         ///     Internal list of view models.
         /// </summary>
-        private ObservableCollection<IViewModel> _viewModels;
+        private ObservableCollection<object> _viewModels = new ObservableCollection<object>();
 
         public MainViewModel()
         {
-            var locator = new Locator();
-
-            // Get all enabled view models. 
-            ViewModels = new ObservableCollection<IViewModel>(
-                locator.GetEnabledViewModels()
-                    .Where(x => x != null)
-                    .OrderBy(x => x.ViewName));
+            ViewModels.AddRange(new object[]
+            {
+                new BattlesViewModel(), 
+                new FollowViewModel(), 
+                new IgnoredViewModel(), 
+                new LogViewModel(), 
+                new RestingViewModel(), 
+                new RoutesViewModel(), 
+                new SettingsViewModel(), 
+                new TargetsViewModel()
+            });
         }
 
         /// <summary>
         ///     List of dynamically found view models.
         /// </summary>
-        public ObservableCollection<IViewModel> ViewModels
+        public ObservableCollection<object> ViewModels
         {
             get { return _viewModels; }
             set { SetProperty(ref _viewModels, value); }
@@ -62,5 +64,7 @@ namespace EasyFarm.ViewModels
             get { return _selectedIndex; }
             set { SetProperty(ref _selectedIndex, value); }
         }
+
+        public object SelectedViewModel => ViewModels[SelectedIndex];
     }
 }

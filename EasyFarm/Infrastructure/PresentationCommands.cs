@@ -1,5 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-Copyright (C) <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -12,21 +13,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
-using System.Collections.Generic;
-using System.Linq;
+using System.Windows.Input;
 
-namespace EasyFarm.Classes
+namespace EasyFarm.Infrastructure
 {
-    public static class Extensions
+    public static class PresentationCommands
     {
-        public static IEnumerable<T> RepeatsN<T>(this IEnumerable<T> values, int count)
-        {
-            return values.GroupBy(x => x)
-                .Where(x => x.Count() >= count)
-                .SelectMany(x => Enumerable.Repeat(x.Key, x.Count()));
-        }
+        public static RoutedCommand Accept { get; } = new RoutedCommand("Accept", typeof(PresentationCommands));
     }
 }

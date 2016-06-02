@@ -1,6 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -27,7 +26,7 @@ namespace EasyFarm.Classes
     /// <summary>
     ///     This class is responsible for holding all of the abilities our character may use in battle.
     /// </summary>
-    public class ActionFilters
+    public static class ActionFilters
     {
         /// <summary>
         ///     Filters out unusable buffing abilities.
@@ -44,10 +43,10 @@ namespace EasyFarm.Classes
             if (string.IsNullOrWhiteSpace(action.Name)) return false;
 
             // MP Check
-            if (action.Ability.MpCost > fface.Player.MPCurrent) return false;
+            if (action.Resource.MpCost > fface.Player.MPCurrent) return false;
 
             // TP Check
-            if (action.Ability.TpCost > fface.Player.TPCurrent) return false;
+            if (action.Resource.TpCost > fface.Player.TPCurrent) return false;
 
             // Usage Limit Check. 
             if (action.UsageLimit != 0)
@@ -56,10 +55,10 @@ namespace EasyFarm.Classes
             }
 
             // Recast Check
-            if (!AbilityUtils.IsRecastable(fface, action.Ability)) return false;
+            if (!AbilityUtils.IsRecastable(fface, action.Resource)) return false;
 
             // Limiting Status Effect Check for Spells. 
-            if (ResourceHelper.IsSpell(action.Ability.AbilityType))
+            if (ResourceHelper.IsSpell(action.Resource.AbilityType))
             {
                 if (ProhibitEffects.ProhibitEffectsSpell.Intersect(fface.Player.StatusEffects).Any())
                 {
@@ -68,7 +67,7 @@ namespace EasyFarm.Classes
             }
 
             // Limiting Status Effect Check for Abilities. 
-            if (ResourceHelper.IsAbility(action.Ability.AbilityType))
+            if (ResourceHelper.IsAbility(action.Resource.AbilityType))
             {
                 if (ProhibitEffects.ProhibitEffectsAbility.Intersect(fface.Player.StatusEffects).Any())
                 {

@@ -1,6 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using System;
 using System.Collections.Generic;
@@ -48,7 +47,7 @@ namespace EasyFarm.Classes
                 // Throw error if now found. 
                 if (list == null)
                     throw new Exception(
-                        string.Format("No key {0} in battle lists to get value. ", index)
+                        $"No key {index} in battle lists to get value. "
                         );
 
                 // Return the list matching the name. 
@@ -62,7 +61,7 @@ namespace EasyFarm.Classes
                 // Throw error when key not found.
                 if (list == null)
                     throw new Exception(
-                        string.Format("No key {0} in battle lists to set value. ", index)
+                        $"No key {index} in battle lists to set value. "
                         );
 
                 // Remove the old reference to the indexed value. 

@@ -1,6 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using System.Linq;
 using EasyFarm.Classes;
@@ -72,7 +71,7 @@ namespace EasyFarm.States
                 }
 
                 // Create an ability from the name and launch the move. 
-                var healingMove = App.AbilityService.CreateAbility(action.Name);
+                var healingMove = App.ResourceParser.Create(action.Name);
                 _executor.UseBuffingAction(healingMove);
             }
         }

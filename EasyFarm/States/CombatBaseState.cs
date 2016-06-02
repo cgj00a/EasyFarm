@@ -1,6 +1,6 @@
 /*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using EasyFarm.Classes;
 using MemoryAPI;
@@ -31,18 +30,18 @@ namespace EasyFarm.States
            IsFighting = false;
         }
 
-        public CombatBaseState(IMemoryAPI fface) : base(fface)
+        protected CombatBaseState(IMemoryAPI fface) : base(fface)
         {
         }
 
         /// <summary>
         ///     Whether the fight has started or not.
         /// </summary>
-        public static bool IsFighting { get; set; }
+        protected static bool IsFighting { get; set; }
 
         /// <summary>
         ///     Who we are trying to kill currently
         /// </summary>
-        public static Unit Target { get; set; }        
+        protected static Unit Target { get; set; }        
     }
 }

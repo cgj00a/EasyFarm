@@ -1,6 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using System;
 using System.Collections.Generic;
@@ -43,7 +42,7 @@ namespace EasyFarm.Classes
         /// Execute a single buffing type action.
         /// </summary>
         /// <param name="action"></param>
-        public void UseBuffingAction(Ability action)
+        public void UseBuffingAction(Resource action)
         {
             if (action == null) throw new ArgumentNullException(nameof(action));
 
@@ -52,7 +51,7 @@ namespace EasyFarm.Classes
             {
                 Name = action.English,
                 IsEnabled = true,
-                Ability = action
+                Resource = action
             };
 
             // Convert ability to new battle ability object.
@@ -129,7 +128,7 @@ namespace EasyFarm.Classes
                 // Target mob if not currently targeted.
                 SetTarget(target);
 
-                if (ResourceHelper.IsSpell(action.Ability.AbilityType))
+                if (ResourceHelper.IsSpell(action.Resource.AbilityType))
                 {
                     _fface.Navigator.Reset();
                     Thread.Sleep(100);

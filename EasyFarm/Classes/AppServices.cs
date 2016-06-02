@@ -1,6 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using System;
 using EasyFarm.Infrastructure;
@@ -26,12 +25,12 @@ namespace EasyFarm.Classes
     ///     Updates the main window's status bar text to
     ///     inform the user of important information.
     /// </summary>
-    public class AppServices
+    public static class AppServices
     {
         /// <summary>
         ///     Sends messages mostly to the status bar.
         /// </summary>
-        public static IEventAggregator EventAggregator { get; set; } = new EventAggregator();
+        private static IEventAggregator EventAggregator { get; } = new EventAggregator();
 
         /// <summary>
         ///     Update the user on what's happening.
@@ -47,11 +46,6 @@ namespace EasyFarm.Classes
         public static void SendPauseEvent()
         {
             PublishEvent<Events.PauseEvent>();
-        }
-
-        public static void SendResumeEvent()
-        {
-            PublishEvent<Events.ResumeEvent>();
         }
 
         private static void PublishEvent<T>(T value = default(T)) where T : class

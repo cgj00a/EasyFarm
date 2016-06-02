@@ -1,4 +1,4 @@
-﻿/*///////////////////////////////////////////////////////////////////
+/*///////////////////////////////////////////////////////////////////
 <EasyFarm, general farming utility for FFXI>
 Copyright (C) Mykezero
 
@@ -15,23 +15,24 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 ///////////////////////////////////////////////////////////////////*/
 
-using EasyFarm.Classes;
-using EasyFarm.Infrastructure;
+using System.Collections.Generic;
 
-namespace EasyFarm.ViewModels
+namespace EasyFarm.Parsing
 {
-    public class BattleSettingsViewModel : ViewModelBase
+    public interface IResourceParser
     {
-        public bool ShouldEngage
-        {
-            get { return Config.Instance.IsEngageEnabled; }
-            set { SetProperty(ref Config.Instance.IsEngageEnabled, value); }
-        }
+        /// <summary>
+        /// Retrieves the first resource with the given name. 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Resource Create(string name);
 
-        public bool ShouldApproach
-        {
-            get { return Config.Instance.IsApproachEnabled; }
-            set { SetProperty(ref Config.Instance.IsApproachEnabled, value); }
-        }
+        /// <summary>
+        ///     Returns a list of all resource with a specific name.
+        /// </summary>
+        /// <param name="name">Name of the action</param>
+        /// <returns>A list of actions with that name</returns>
+        IEnumerable<Resource> GetResourcesByName(string name);
     }
 }

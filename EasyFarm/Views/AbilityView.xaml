@@ -76,7 +76,7 @@
                               Margin="5"
                               IsReadOnly="True"
                               ItemsSource="{Binding CommandTargets}"
-                              SelectedItem="{Binding Ability.TargetType}" />
+                              SelectedItem="{Binding Resource.TargetType}" />
                 </Grid>
 
                 <!-- Distance -->
@@ -129,7 +129,7 @@
                                         Grid.Column="1"
                                         Margin="5"
                                         ToolTip="Index of the move use for determining its recast time. "
-                                        Value="{Binding Path=Ability.Index}" />
+                                        Value="{Binding Path=Resource.Index}" />
 
                 <!-- MP Cost -->
                 <Label Grid.Column="0"
@@ -141,7 +141,7 @@
                                         Grid.Column="1"
                                         Margin="5"
                                         ToolTip="MP Cost for the move."
-                                        Value="{Binding Path=Ability.MpCost}" />
+                                        Value="{Binding Path=Resource.MpCost}" />
 
                 <!-- TP Cost -->
                 <Label Grid.Column="0"
@@ -153,7 +153,7 @@
                                         Grid.Column="1"
                                         Margin="5"
                                         ToolTip="TP Cost for the move. "
-                                        Value="{Binding Path=Ability.TpCost}" />
+                                        Value="{Binding Path=Resource.TpCost}" />
 
                 <!-- Limit Use Per Battle -->
                 <Label Grid.Row="3"

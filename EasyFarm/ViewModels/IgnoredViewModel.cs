@@ -1,6 +1,6 @@
 /*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,18 +13,17 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using EasyFarm.Classes;
 using System.Collections.ObjectModel;
-using EasyFarm.Infrastructure;
 
 namespace EasyFarm.ViewModels
 {
-    [ViewModel("Ignored")]
     public class IgnoredViewModel : ListViewModel<string>
     {
+        public string ViewName => "Ignored";
+
         public override string Value
         {
             get { return Config.Instance.IgnoredName; }

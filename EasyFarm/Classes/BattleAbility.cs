@@ -1,6 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using EasyFarm.Views;
 using Prism.Commands;
@@ -44,7 +43,7 @@ namespace EasyFarm.Classes
         /// <summary>
         ///     Resource information about the move.
         /// </summary>
-        private Ability _ability = new Ability();
+        private Resource _resource = new Resource();
 
         private AbilityType _abilityType = AbilityType.Unknown;
 
@@ -160,7 +159,7 @@ namespace EasyFarm.Classes
         ///     Create our command binds and initialize our user's
         ///     move usage conditions.
         /// </summary>
-        public BattleAbility() : this(new Ability())
+        public BattleAbility() : this(new Resource())
         {
             AutoFillCommand = new DelegateCommand(AutoFill);
         }
@@ -168,11 +167,11 @@ namespace EasyFarm.Classes
         /// <summary>
         ///     Create a storing a reference to the given ability.
         /// </summary>
-        /// <param name="ability"></param>
-        public BattleAbility(Ability ability)
+        /// <param name="resource"></param>
+        public BattleAbility(Resource resource)
         {
-            Ability = ability;
-            Name = ability.English;
+            Resource = resource;
+            Name = resource.English;
         }
 
         /// <summary>
@@ -188,15 +187,15 @@ namespace EasyFarm.Classes
         /// <summary>
         ///     Holds the resource file information for the move.
         /// </summary>
-        public Ability Ability
+        public Resource Resource
         {
-            get { return _ability; }
-            set { SetProperty(ref _ability, value); }
+            get { return _resource; }
+            set { SetProperty(ref _resource, value); }
         }
 
         public AbilityType AbilityType
         {
-            get { return Ability.AbilityType; }
+            get { return Resource.AbilityType; }
             set
             {
                 SetProperty(ref _abilityType, value);
@@ -205,7 +204,7 @@ namespace EasyFarm.Classes
                     ? CommandMapper[value]
                     : string.Empty;
 
-                Ability.Prefix = prefix;
+                Resource.Prefix = prefix;
             }
         }
 
@@ -244,7 +243,7 @@ namespace EasyFarm.Classes
             set
             {
                 SetProperty(ref _name, value);
-                Ability.English = _name;
+                Resource.English = _name;
             }
         }
         public int PlayerLowerHealth
@@ -347,12 +346,12 @@ namespace EasyFarm.Classes
             }
             else
             {
-                Ability = ability;
+                Resource = ability;
                 AppServices.InformUser("Auto-Filling for {0} complete. ", Name);
 
-                if (Ability.AbilityType == AbilityType.Weaponskill)
+                if (Resource.AbilityType == AbilityType.Weaponskill)
                 {
-                    Ability.TpCost = 1000;
+                    Resource.TpCost = 1000;
                 }
 
                 // Manually signal AbilityType that a change has occured.
@@ -367,17 +366,17 @@ namespace EasyFarm.Classes
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Ability FindAbility(string name)
+        public Resource FindAbility(string name)
         {
             // Retriever all moves with the specified name.
-            var moves = App.AbilityService.GetAbilitiesWithName(name).ToArray();
+            var moves = App.ResourceParser.GetResourcesByName(name).ToArray();
 
             // Prompt user to select a move if more
             // than one are found with the same name.
             // Otherwise, return the first occurence or null.
             if (moves.Length > 1)
             {
-                return new AbilitySelectionBox(name).SelectedAbility;
+                return new AbilitySelectionBox(name).SelectedResource;
             }
 
             return moves.FirstOrDefault();

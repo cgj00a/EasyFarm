@@ -1,4 +1,21 @@
-﻿using MemoryAPI;
+﻿/*///////////////////////////////////////////////////////////////////
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+///////////////////////////////////////////////////////////////////*/
+
+using MemoryAPI;
 using System.Threading;
 
 namespace EasyFarm.Classes
@@ -11,8 +28,7 @@ namespace EasyFarm.Classes
 
         public static Player Instance
         {
-            get { return _instance = _instance ?? new Player(); ; }
-            private set { _instance = value; }
+            get { return _instance = _instance ?? new Player(); }
         }
 
         /// <summary>

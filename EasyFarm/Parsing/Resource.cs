@@ -1,6 +1,6 @@
 /*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 namespace EasyFarm.Parsing
 {
@@ -22,7 +21,7 @@ namespace EasyFarm.Parsing
     ///     An action to be used on a target unit or player.
     ///     Could be a spell or an ability.
     /// </summary>
-    public class Ability
+    public class Resource
     {
         /// <summary>
         ///     The ability ID in its own resource file.

@@ -1,6 +1,6 @@
-/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+﻿/*///////////////////////////////////////////////////////////////////
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,22 +13,19 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
-using System;
-
-namespace EasyFarm.Infrastructure
+namespace EasyFarm.ViewModels
 {
-    public class ViewModelAttribute : Attribute
+    // http://stackoverflow.com/questions/2956027/how-to-build-a-generic-re-usable-modal-dialog-for-wpf-following-mvvm
+    public interface IWindow
     {
-        public ViewModelAttribute(string name, bool enabled = true)
-        {
-            Enabled = enabled;
-            Name = name;
-        }
+        void Close();
 
-        public string Name { get; set; }
-        public bool Enabled { get; set; }
+        IWindow CreateChild(object viewModel);
+
+        void Show();
+
+        bool? ShowDialog();
     }
 }

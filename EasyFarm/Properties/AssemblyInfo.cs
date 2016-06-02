@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("EasyFarm")]
 [assembly: AssemblyDescription("A general purpose farming tool for Final Fantasy XI.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ZeroLimits")]
+[assembly: AssemblyCompany("Mykezero")]
 [assembly: AssemblyProduct("EasyFarm")]
 [assembly: AssemblyCopyright("Copyright ©  2013 - 2015")]
 [assembly: AssemblyTrademark("")]

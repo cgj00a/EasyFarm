@@ -1,6 +1,6 @@
 ﻿/*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,18 +13,16 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using System;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using EasyFarm.Classes;
 using EasyFarm.Infrastructure;
 using EasyFarm.Logging;
-using EasyFarm.Views;
+using EasyFarm.Parsing;
 using Prism.Commands;
 using Application = System.Windows.Application;
 using EasyFarm.Properties;
@@ -37,6 +35,8 @@ namespace EasyFarm.ViewModels
     /// </summary>
     public class MasterViewModel : ViewModelBase
     {
+        private readonly IWindow _window;
+
         /// <summary>
         ///     Saves and loads settings from file.
         /// </summary>
@@ -52,8 +52,17 @@ namespace EasyFarm.ViewModels
         /// </summary>
         private string _startStopHeader = "St_art";
 
-        public MasterViewModel()
+        public MasterViewModel(IWindow window)
         {
+            if (window == null) throw new ArgumentNullException(nameof(window));
+            _window = window;
+
+            Log.Initialize();
+            Log.Write("Application starting");
+
+            ResourceParser = new ResourceParser("resources");
+            Log.Write("Resources loaded");
+
             // Create a new settings manager and associate it with our
             // .eup file type. 
             _settingsManager = new SettingsManager("eup", "EasyFarm User Preference");
@@ -75,6 +84,8 @@ namespace EasyFarm.ViewModels
             Application.Current.MainWindow.StateChanged += OnStateChanged;
             _trayIcon.Click += TrayIcon_Click;
         }
+
+        public static ResourceParser ResourceParser { get; set; }
 
         /// <summary>
         ///     Bind for the title bar's text.
@@ -234,41 +245,23 @@ namespace EasyFarm.ViewModels
         /// </summary>
         private void SelectProcess()
         {
-            // Let user select ffxi process
-            var selectionView = new ProcessSelectionView();
-            selectionView.ShowDialog();
+            var viewModel = new ProcessSelectionViewModel();
+            var result = _window.CreateChild(viewModel).ShowDialog() ?? false;
+            var process = viewModel.SelectedProcess;
 
-            // Grab the view model with the game sessions. 
-            var viewModel = selectionView.DataContext as ProcessSelectionViewModel;
-
-            // If the view has a process selection view model binded to it. 
-            if (viewModel != null)
+            if (result && process != null)
             {
-                // Get the selected process. 
-                var process = viewModel.SelectedProcess;
-
-                // User never selected a process. 
-                if (process == null || !viewModel.IsProcessSelected)
-                {
-                    Log.Write("Process not found");
-                    AppServices.InformUser("No valid process was selected.");
-                    return;
-                }
-
-                // Log that a process selected. 
                 Log.Write("Process found");
-
-                // Get memory reader set in config file. 
                 var fface = MemoryWrapper.Create(process.Id);
-
-                // Set the fface Session. 
                 SetSession(fface);
 
-                // Tell the user the program has loaded the player's data
                 AppServices.InformUser("Bot Loaded: " + fface.Player.Name);
-
-                // Set the main window's title to the player's name. 
                 MainWindowTitle = "EasyFarm - " + fface.Player.Name;
+            }
+            else
+            {
+                Log.Write("Process not found");
+                AppServices.InformUser("No valid process was selected.");
             }
         }
 
@@ -299,8 +292,8 @@ namespace EasyFarm.ViewModels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void OnStateChanged(object sender, EventArgs e)
-        {           
-            if(!MinimizeToTray) return;
+        {
+            if (!MinimizeToTray) return;
 
             if (Application.Current.MainWindow.WindowState == WindowState.Minimized)
             {

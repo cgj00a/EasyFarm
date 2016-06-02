@@ -1,6 +1,6 @@
 /*///////////////////////////////////////////////////////////////////
-<EasyFarm, general farming utility for FFXI.>
-Copyright (C) <2013>  <Zerolimits>
+<EasyFarm, general farming utility for FFXI>
+Copyright (C) Mykezero
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-*/
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////*/
 
 using MemoryAPI;
 using System;
@@ -70,23 +69,17 @@ namespace EasyFarm.Classes
         /// <summary>
         ///     The unit's id.
         /// </summary>
-        public int Id { get; set; }
+        public int Id { get; }
 
         /// <summary>
         ///     The unit's claim id; zero for unclaimed.
         /// </summary>
-        public int ClaimedId
-        {
-            get { return _npc.ClaimedID(Id); }
-        }
+        public int ClaimedId => _npc.ClaimedID(Id);
 
         /// <summary>
         ///     The unit's distace from the player.
         /// </summary>
-        public double Distance
-        {
-            get { return _npc.Distance(Id); }
-        }
+        public double Distance => _npc.Distance(Id);
 
         /// <summary>
         ///     The unit's position.
@@ -108,104 +101,64 @@ namespace EasyFarm.Classes
         /// <summary>
         ///     The unit's health as a percent.
         /// </summary>
-        public short HppCurrent
-        {
-            get { return _npc.HPPCurrent(Id); }
-        }
+        public short HppCurrent => _npc.HPPCurrent(Id);
 
         /// <summary>
         ///     Whether this unit is active.
         /// </summary>
-        public bool IsActive
-        {
-            get { return _npc.IsActive(Id); }
-        }
+        public bool IsActive => _npc.IsActive(Id);
 
         /// <summary>
         ///     Whether this unit is claimed by some player.
         /// </summary>
-        public bool IsClaimed
-        {
-            get { return _npc.IsClaimed(Id); }
-        }
+        public bool IsClaimed => _npc.IsClaimed(Id);
 
         /// <summary>
         ///     Whether this unit is visible to the player.
         /// </summary>
-        public bool IsRendered
-        {
-            get { return _npc.IsRendered(Id); }
-        }
+        public bool IsRendered => _npc.IsRendered(Id);
 
         /// <summary>
         ///     The unit's name.
         /// </summary>
-        public string Name
-        {
-            get { return _npc.Name(Id); }
-        }
+        public string Name => _npc.Name(Id);
 
         /// <summary>
         ///     The unit's npc type
         /// </summary>
-        public NpcType NpcType
-        {
-            get { return _npc.NPCType(Id); }
-        }
+        public NpcType NpcType => _npc.NPCType(Id);
 
         /// <summary>
         ///     The unit's x coordinate.
         /// </summary>
-        public float PosX
-        {
-            get { return _npc.PosX(Id); }
-        }
+        public float PosX => _npc.PosX(Id);
 
         /// <summary>
         ///     The unit's y coordinate.
         /// </summary>
-        public float PosY
-        {
-            get { return _npc.PosY(Id); }
-        }
+        public float PosY => _npc.PosY(Id);
 
         /// <summary>
         ///     The unit's z coordinate.
         /// </summary>
-        public float PosZ
-        {
-            get { return _npc.PosZ(Id); }
-        }
+        public float PosZ => _npc.PosZ(Id);
 
         /// <summary>
         ///     The unit's status.
         /// </summary>
-        public Status Status
-        {
-            get { return _npc.Status(Id); }
-        }
+        public Status Status => _npc.Status(Id);
 
-        public bool MyClaim
-        {
-            // Using fface.PartyMember[0].ServerID until fface.Player.PlayerServerID is fixed. 
-            get { return ClaimedId == _fface.PartyMember[0].ServerID; }
-        }
+        public bool MyClaim => ClaimedId == _fface.PartyMember[0].ServerID;
 
         /// <summary>
         ///     If the unit has aggroed our player.
         /// </summary>
-        public bool HasAggroed
-        {
-            get { return (!IsClaimed || MyClaim) && Status == Status.Fighting; }
-        }
+        public bool HasAggroed => (!IsClaimed || MyClaim) && Status == Status.Fighting;
 
         /// <summary>
         ///     If the unit is dead.
         /// </summary>
-        public bool IsDead
-        {
-            get { return Status == Status.Dead1 || Status == Status.Dead2 || HppCurrent <= 0; }
-        }
+        public bool IsDead => Status == Status.Dead1 || Status == Status.Dead2 || HppCurrent <= 0;
 
         /// <summary>
         ///     If a party or alliance member has claim on the unit.
@@ -228,10 +181,7 @@ namespace EasyFarm.Classes
         /// <summary>
         ///     The vertical distance between this unit and our player.
         /// </summary>
-        public double YDifference
-        {
-            get { return Math.Abs(PosY - _fface.Player.PosY); }
-        }
+        public double YDifference => Math.Abs(PosY - _fface.Player.PosY);
 
         public bool IsPet
         {
