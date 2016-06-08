@@ -72,6 +72,8 @@ namespace EasyFarm.Infrastructure
         {
             cw.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             cw.CommandBindings.Add(new CommandBinding(PresentationCommands.Accept, (sender, e) => cw.DialogResult = true));
+            cw.Height = cw.Owner.Height * .90;
+            cw.Width = cw.Owner.Width * .90;
         }
     }
 }
