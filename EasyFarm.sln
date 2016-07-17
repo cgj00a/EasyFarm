@@ -7,7 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFarm", "EasyFarm\EasyFa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryAPI", "MemoryAPI\MemoryAPI.csproj", "{CC6CC9BE-32F0-4B8A-A1AD-6C7C744E2FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFarm.Tests", "EasyFarm.Tests\EasyFarm.Tests.csproj", "{43285FC5-222E-4828-B8F2-396FF628553D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFarm.DataSource", "EasyFarm.DataSource\EasyFarm.DataSource.csproj", "{47808D02-4ABD-4484-9B8B-4D21ED715A3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFarm.IntegrationTests", "EasyFarm.IntegrationTests\EasyFarm.IntegrationTests.csproj", "{B84E670D-E0F5-477C-BDB7-CCEBE4F43D63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFarm.UnitTests", "EasyFarm.UnitTests\EasyFarm.UnitTests.csproj", "{43285FC5-222E-4828-B8F2-396FF628553D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +27,14 @@ Global
 		{CC6CC9BE-32F0-4B8A-A1AD-6C7C744E2FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC6CC9BE-32F0-4B8A-A1AD-6C7C744E2FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC6CC9BE-32F0-4B8A-A1AD-6C7C744E2FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47808D02-4ABD-4484-9B8B-4D21ED715A3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47808D02-4ABD-4484-9B8B-4D21ED715A3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47808D02-4ABD-4484-9B8B-4D21ED715A3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47808D02-4ABD-4484-9B8B-4D21ED715A3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B84E670D-E0F5-477C-BDB7-CCEBE4F43D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B84E670D-E0F5-477C-BDB7-CCEBE4F43D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B84E670D-E0F5-477C-BDB7-CCEBE4F43D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84E670D-E0F5-477C-BDB7-CCEBE4F43D63}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43285FC5-222E-4828-B8F2-396FF628553D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43285FC5-222E-4828-B8F2-396FF628553D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43285FC5-222E-4828-B8F2-396FF628553D}.Release|Any CPU.ActiveCfg = Release|Any CPU

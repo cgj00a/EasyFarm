@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EasyFarm.Tests")]
+[assembly: AssemblyTitle("EasyFarm.IntegrationTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EasyFarm.Tests")]
+[assembly: AssemblyProduct("EasyFarm.IntegrationTests")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("43285fc5-222e-4828-b8f2-396ff628553d")]
+[assembly: Guid("b84e670d-e0f5-477c-bdb7-ccebe4f43d63")]
 
 // Version information for an assembly consists of the following four values:
 //
