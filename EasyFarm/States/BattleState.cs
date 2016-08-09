@@ -19,6 +19,8 @@ You should have received a copy of the GNU General Public License
 using System.Linq;
 using EasyFarm.Classes;
 using MemoryAPI;
+using Ploeh.AutoFixture;
+using Ploeh.AutoFixture.AutoMoq;
 
 namespace EasyFarm.States
 {
