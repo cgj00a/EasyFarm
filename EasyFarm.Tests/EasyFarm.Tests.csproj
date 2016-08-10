@@ -83,7 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\BattleStateTest.cs" />
+    <Compile Include="Builders\Builder.cs" />
+    <Compile Include="Builders\BuilderTest.cs" />
+    <Compile Include="TestTypes\ConcreteType.cs" />
+    <Compile Include="Classes\MemoryTestFixture.cs" />
     <Compile Include="Classes\PathRecorderTest.cs" />
+    <Compile Include="Classes\MobTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
