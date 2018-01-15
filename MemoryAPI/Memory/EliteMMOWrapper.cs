@@ -1,9 +1,26 @@
-﻿using EliteMMO.API;
+﻿// ///////////////////////////////////////////////////////////////////
+// This file is a part of EasyFarm for Final Fantasy XI
+// Copyright (C) 2013-2017 Mykezero
+// 
+// EasyFarm is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// EasyFarm is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// If not, see <http://www.gnu.org/licenses/>.
+// ///////////////////////////////////////////////////////////////////
+using EliteMMO.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Caching;
 using System.Threading;
+using MemoryAPI.Chat;
 using MemoryAPI.Memory;
 using MemoryAPI.Navigation;
 using MemoryAPI.Windower;
@@ -30,6 +47,7 @@ namespace MemoryAPI
             Target = new TargetTools(EliteAPI);
             Timer = new TimerTools(EliteAPI);
             Windower = new WindowerTools(EliteAPI);
+            Chat = new ChatTools(EliteAPI);
 
             //EliteAPI.Player.GetPlayerInfo().StatsModifiers.
 
@@ -107,7 +125,7 @@ namespace MemoryAPI
                     api.ThirdParty.KeyDown(Keys.NUMPAD8);
                     if (useObjectAvoidance) AvoidObstacles();
                     Thread.Sleep(100);
-                }                
+                }
             }
 
             private void KeepRunningWithKeyboard()
@@ -267,7 +285,7 @@ namespace MemoryAPI
             {
                 var entity = api.Entity.GetEntity(id);
                 return Helpers.GetNpcType(entity);
-            }                        
+            }
 
             public float PosX(int id) { return api.Entity.GetEntity(id).X; }
 
@@ -294,7 +312,7 @@ namespace MemoryAPI
                     var member = api.Party.GetPartyMember(index);
                     return member;
                 }
-            }            
+            }
 
             public PartyMemberTools(EliteAPI api, int index)
             {
@@ -350,7 +368,7 @@ namespace MemoryAPI
             public Job SubJob
             {
                 get { return (Job)unit.SubJob; }
-            }            
+            }
 
             public NpcType NpcType
             {
@@ -559,6 +577,29 @@ namespace MemoryAPI
             public void SendKeyPress(Keys keys)
             {
                 api.ThirdParty.KeyPress(keys);
+            }
+        }
+
+        public class ChatTools : IChatTools
+        {
+            private readonly EliteAPI _api;
+            private PollingProcessor _timer;
+            public Queue<EliteAPI.ChatEntry> ChatEntries { get; set; } = new Queue<EliteAPI.ChatEntry>();
+
+            public ChatTools(EliteAPI api)
+            {
+                _api = api;
+                _timer = new PollingProcessor(QueueChatEntries);
+                _timer.Start();
+            }
+
+            private void QueueChatEntries()
+            {
+                EliteAPI.ChatEntry chatEntry;
+                while ((chatEntry =  _api.Chat.GetNextChatLine()) != null)
+                {
+                    ChatEntries.Enqueue(chatEntry);
+                }
             }
         }
     }

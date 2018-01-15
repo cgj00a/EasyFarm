@@ -15,20 +15,13 @@
 // You should have received a copy of the GNU General Public License
 // If not, see <http://www.gnu.org/licenses/>.
 // ///////////////////////////////////////////////////////////////////
-using System;
+using System.Collections.Generic;
+using EliteMMO.API;
 
-namespace EasyFarm.Parsing
+namespace MemoryAPI.Chat
 {
-    [Flags]
-    public enum TargetType
+    public interface IChatTools
     {
-        Unknown = 0x0000,
-        Self = 0x0001,
-        Player = 0x0002,
-        Party = 0x0004,
-        Ally = 0x0008,
-        Npc = 0x0016,
-        Enemy = 0x0032,
-        Corpse = 0x0064
+        Queue<EliteAPI.ChatEntry> ChatEntries { get; set; }
     }
 }

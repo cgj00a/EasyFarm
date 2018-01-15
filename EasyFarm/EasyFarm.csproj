@@ -98,10 +98,18 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpFunctionalExtensions, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSharpFunctionalExtensions.1.8.1\lib\net45\CSharpFunctionalExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EliteMMO.API, Version=1.0.0.21, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dependencies\EliteMMO.API.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.6.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
@@ -169,17 +177,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ActionRules\AbilityBlockedActionRule.cs" />
-    <Compile Include="ActionRules\IsRecastableActionRule.cs" />
-    <Compile Include="ActionRules\PlayerHealthActionRule.cs" />
-    <Compile Include="ActionRules\ReserveMpActionRule.cs" />
-    <Compile Include="ActionRules\ReserveTpActionRule.cs" />
-    <Compile Include="ActionRules\SpellBlockedActionRule.cs" />
-    <Compile Include="ActionRules\StatusEffectActionRule.cs" />
     <Compile Include="Classes\BattleList.cs" />
     <Compile Include="Classes\BattleLists.cs" />
     <Compile Include="Classes\AppServices.cs" />
     <Compile Include="Classes\IUnit.cs" />
+    <Compile Include="Classes\IUnitService.cs" />
     <Compile Include="Classes\Persister.cs" />
     <Compile Include="Classes\JsonPersister.cs" />
     <Compile Include="Classes\PlayerMonitor.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="Classes\Range.cs" />
     <Compile Include="Classes\Serialization.cs" />
     <Compile Include="Classes\TimeWaiter.cs" />
+    <Compile Include="Classes\LibraryUpdater.cs" />
     <Compile Include="Classes\XmlPersister.cs" />
     <Compile Include="Infrastructure\InverseBooleanConverter.cs" />
     <Compile Include="Logging\ILogger.cs" />
@@ -248,15 +251,6 @@
     <Compile Include="Classes\ProhibitEffects.cs" />
     <Compile Include="Classes\SettingsManager.cs" />
     <Compile Include="Classes\ActionFilters.cs" />
-    <Compile Include="ActionRules\BuffingActionRules.cs" />
-    <Compile Include="ActionRules\IActionRule.cs" />
-    <Compile Include="ActionRules\ActionContext.cs" />
-    <Compile Include="ActionRules\IsEnabledActionRule.cs" />
-    <Compile Include="ActionRules\NameValidActionRule.cs" />
-    <Compile Include="ActionRules\UsageLimitActionRule.cs" />
-    <Compile Include="ActionRules\RecastPeriodActionRule.cs" />
-    <Compile Include="ActionRules\HasEnoughMpActionRule.cs" />
-    <Compile Include="ActionRules\HasEnoughTpActionRule.cs" />
     <Compile Include="Classes\UnitFilters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\FiniteStateMachine.cs" />

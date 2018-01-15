@@ -15,38 +15,51 @@
 // You should have received a copy of the GNU General Public License
 // If not, see <http://www.gnu.org/licenses/>.
 // ///////////////////////////////////////////////////////////////////
-using System.Collections.ObjectModel;
-using Prism.Mvvm;
+using System;
+using System.Threading;
 
-namespace EasyFarm.Classes
+namespace MemoryAPI.Memory
 {
-    public class BattleList : BindableBase
+    public class PollingProcessor
     {
-        private string _name;
-        private ObservableCollection<BattleAbility> _value;
+        private readonly Timer _timer;
+        private readonly Action _action;
 
-        public BattleList()
+        public PollingProcessor(Action action)
         {
+            _action = action;
+            _timer = new Timer(Poll);
         }
 
-        public BattleList(string name)
+        public TimeSpan PollDelay { get; set; } = TimeSpan.FromMilliseconds(100);
+
+        private void Poll(object state)
         {
-            _name = name;
-            _value = new ObservableCollection<BattleAbility> {new BattleAbility()};
+            // Run action
+            _action();
+
+            // Start timer with delay.
+            StartLazyTimer();
         }
 
-        public string Name
+        private void StartLazyTimer()
         {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
+            _timer.Change(PollDelay, Timeout.InfiniteTimeSpan);
         }
 
-        public ObservableCollection<BattleAbility> Actions
+        public void Start()
         {
-            get {
-                return _value;
-            }
-            set { SetProperty(ref _value, value); }
+            StartInstantTimer();
+        }
+
+        private void StartInstantTimer()
+        {
+            _timer.Change(0, Timeout.Infinite);
+        }
+
+        public void Stop()
+        {
+            _timer.Change(Timeout.Infinite, Timeout.Infinite);
         }
     }
 }
